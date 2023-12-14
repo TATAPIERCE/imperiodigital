@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Imperio Digital</title>
+    <link rel="icon" href="{%static 'img/Logog.png' %}">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/estilos2.css' %}">
+
+    <style>
+        /* Estilos para ocultar las secciones inicialmente */
+        #privacidad, #terminos {
+            display: none;
+        }
+
+        /* Estilo para el enlace que se puede hacer clic */
+        .toggle-link {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+
+   
+</head>
+
+<body>
+    <div class="headong">
+
+        <div class="logo">
+            <a href="#"><img class="logo" src="{% static 'img/Logo 1.png' %}" style="height: 30%; width: 30%;" alt=""></a>
+        </div>
+
+        <nav class="navbar">
+            <a href="#">Inicio</a>                 
+            <a href="#contacto">Contactanos</a>
+            <a href="#servicio">Servicios</a>
+            <a href="#chatbot">ChatBot</a>
+        </nav>
+
+</div>
+
+
+    <header class="hero">
+        <div class="textos-hero">
+            <h1>Bienvenido a Imperio Digital</h1>
+            <p>Servicio tecnico de calidad.</p>
+        </div>
+        <div class="svg-hero" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+
+
+    <section class="wave-contenedor website">
+        <img src="{% static 'img/prueba.webp' %}" alt="">
+        <div class="contenedor-textos-main">
+            <h2 class="titulo left">¿Que hacemos?</h2>
+            <p class="parrafo">Nuestro servicio técnico de informática se especializa en diagnosticar, reparar y mantener equipos y sistemas informáticos. Ofrecemos soluciones rápidas y eficientes para problemas de hardware, software y configuraciones, garantizando un rendimiento óptimo de los dispositivos y sistemas de nuestros clientes. </p>
+            <a href="https://instagram.com/imperiodigitalchillan?igshid=YzAwZjE1ZTI0Zg==" class="cta">Saber mas</a>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="contenedor">
+            <h2 class="titulo left">Nuestra direccion.</h2>
+            <a href="https://maps.app.goo.gl/4zUMQfy3p6AEnc3HA" class="btnlol">Ver en el mapa</a>
+        </div>
+    </section>
+
+    <section id="servicio" class="cards contenedor">
+        <h2  class="titulo">Servicios</h2>
+        <div class="content-cards">
+            <article class="card">
+                <i class="bi bi-tools"></i>
+                <h3>Reparacion</h3>
+                <h4>$5.000</h4>
+                <p style="font-size: 120%;">Diagnóstico y arreglo de hardware como software para un rendimiento óptimo.</p>
+                <a onclick="mostrarFormulario()" class="cta">Agendar</a>
+            </article>
+            <article class="card">
+                <i class="bi bi-pc-display"></i>
+                <h3>Mantencion</h3>
+                <h4>$17.000</h4>
+                <p style="font-size: 90%;">Servicio especializado en el cuidado y optimización de sistemas informáticos. Aseguramos un rendimiento constante y eficiente.</p>
+                <a  onclick="mostrarFormulario()" class="cta">Agendar</a>
+            </article>
+            <article class="card">
+                <i class="bi bi-pci-card"></i>
+                <h3>Instalacion</h3>
+                <h4>$10.000</h4>
+                <p style="font-size: 90%;">Instalacion de hardware como tarjetas graficas, procesadores y armado de equipos como notebooks, computadoras o sistemas operativos para consolas</p>
+                <a  onclick="mostrarFormulario()" class="cta">Agendar</a>
+            </article>
+
+
+            <div class="card-body">
+
+                <div id="formulario-container" style="display: none;">
+                    <br>
+                    <br>
+                    <br>
+                    <h2>Agendar Cita</h2>
+
+
+                    <form method="post" action="agendar_cita">
+                        {% csrf_token %}
+                        
+                        <div class="form-section">
+                            <label for="{{ form.servicio.id_for_label }}">Servicio:</label>
+                            <br>
+                            {{ form.servicio }}
+                        </div>
+            
+                        <div class="form-section">
+                            <br>
+                            <label for="{{ form.nombre_del_cliente.id_for_label }}">Nombre del Cliente:</label>
+                            <br>
+                            {{ form.nombre_del_cliente }}
+                        </div>
+            
+                        <div class="form-section">
+                            <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
+                            <br>
+                            {{ form.direccion }}
+                        </div>
+            
+                        <div class="form-section">
+                            <label for="{{ form.fecha.id_for_label }}">Fecha:</label>
+                            <br>
+                            {{ form.fecha }}
+                        </div>
+            
+                        <div class="form-section">
+                            <label for="{{ form.hora_inicio.id_for_label }}">Hora de Inicio:</label>
+                            <br>
+                            {{ form.hora_inicio }}
+                        </div>
+            
+                        <div class="form-section">
+                            <label for="{{ form.descripcion.id_for_label }}">Descripción del problema:</label>
+                            
+                            {{ form.descripcion }}
+                        </div>
+            
+                        <br>
+                        <button class="btnlol" type="submit">Agendar</button>
+                    </form>
+                </div>
+            </div>
+        
+            
+        </div>
+    </section>
+
+    <section class="galeria">
+        <div class="contenedor">
+            <h2 class="titulo">Servicios exitosos</h2>
+            <article class="galeria-cont">
+                <img src="{% static 'img/uno.jpg' %}" alt="">
+                <img src="{% static 'img/dos.jpg' %}" alt="">
+                <img src="{% static 'img/tres.jpg' %}" alt="">
+                <img src="{% static 'img/cuatro.jpg' %}" alt="">
+                <img src="{% static 'img/cinco.jpg' %}" alt="">
+                <img src="{% static 'img/seis.jpg' %}" alt="">
+            </article>
+        </div>
+    </section>
+
+    <section class="info-last">
+
+        <div id="chatbot" class="contenedor last-section">
+            <div class="contenedor-textos-main">
+                <h2 class="titulo left">Si tienes dudas</h2>
+                <p class="parrafo">
+                    Un chatbot de asistencia es una aplicación de inteligencia artificial diseñada para interactuar con usuarios y proporcionar respuestas a sus preguntas o dudas en tiempo real. Este tipo de chatbot utiliza técnicas de procesamiento del lenguaje natural (PLN) para comprender y responder a las consultas de los usuarios de una manera conversacional.</p>
+                <button id="open-chat-button" class="cta" onclick="toggleChat()">Abrir Chat</button>
+            </div>
+            <img src="{% static 'img/ilustracion.svg' %}" alt="">
+        </div>
+
+        <div id="chat-container" style="display: none;">
+            <div id="chatbox"></div>
+            <div id="input-container">
+                <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
+                <button id="send-button" onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+        
+        <div class="svg-wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+            style="height: 100%; width: 100%;">
+            <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                style="stroke: none; fill: #575af5;"></path>
+        </svg></div>
+    </section>
+
+    <footer id="contacto">
+        <div class="contenedor">
+            <h2 class="titulo">Contactanos</h2>
+            <form action="enviar_correo_contacto" method="post" class="form">
+                {% csrf_token %}
+                <input class="input" type="text" name="nombre" placeholder="Nombre">
+                <input class="input" type="email" name="email" placeholder="Email">
+                <textarea class="input" name="mensaje" cols="30" rows="10" placeholder="Mensaje"></textarea>
+                <input class="input" type="submit" value="Enviar">
+            </form>
+        </div>
+
+
+
+    </footer>
+
+
+    <footer>
+        <div>
+            <h2 class="toggle-link" onclick="toggleSection('privacidad')">Política de Privacidad</h2>
+            <div id="privacidad">
+
+                <br>
+                <p><h2>Información que Recopilamos</h2>
+                    Información de contacto: Nombre, dirección de correo electrónico, número de teléfono.
+
+                    Información de Dispositivos: Información sobre el dispositivo que utilizas para acceder a nuestros servicios, incluida la dirección IP, tipo de dispositivo, sistema operativo y navegador web.
+                    
+                    Información de Transacciones: Detalles sobre las transacciones que realizas con nosotros, incluidos los detalles de los servicios contratados y los pagos realizados.</p>
+                <br>
+                <p><h2>Uso de la Información</h2> Utilizamos la información recopilada para:
+
+                    Proporcionar y mantener nuestros servicios técnicos.
+                    
+                    Procesar transacciones y facturación.
+                    
+                    Enviar comunicaciones relacionadas con el servicio, actualizaciones y anuncios.</p>
+                <br>
+                <p> <h2>Compartir Información</h2> No compartimos tu información personal con terceros, excepto cuando sea necesario para la prestación de nuestros servicios o cuando estemos obligados por ley.</p>
+                <br>
+                <p> <h2>Seguridad</h2> Tomamos medidas razonables para proteger la información personal contra pérdidas, robos y accesos no autorizados. Sin embargo, ten en cuenta que ninguna transmisión por internet o método de almacenamiento electrónico es 100% seguro.</p>
+                <br>
+                <p><h2>Cookies y Tecnologías Similares</h2> Utilizamos cookies y tecnologías similares para mejorar la experiencia del usuario y analizar el tráfico. Puedes gestionar las preferencias de cookies a través de la configuración de tu navegador.</p>
+                <br>
+                <p><h2>Tus Derechos</h2> Tienes derechos sobre tu información personal, incluido el derecho a acceder, corregir y eliminar tus datos. Ponte en contacto con nosotros para ejercer estos derechos.</p>
+                <br>
+                <p><h2>Cambios en la Política de Privacidad</h2> Nos reservamos el derecho de actualizar nuestra política de privacidad en cualquier momento. Cualquier cambio significativo se comunicará a través de nuestro sitio we </p>
+            </div>
+        </div>
+    
+        <!-- Sección de Términos de Servicio -->
+        <div>
+            <h2 class="toggle-link" onclick="toggleSection('terminos')">Términos de Servicio</h2>
+            <div id="terminos">
+                <br>
+                <p><h2>Aceptación de los Términos</h2> Al acceder o utilizar los servicios de Imperio Digital, aceptas estos términos de servicio en su totalidad. Si no estás de acuerdo con alguno de estos términos, no uses nuestros servicios.</p>
+                <br>
+                <p><h2>Descripción del Servicio</h2> Imperio Digital proporciona servicios técnicos, incluyendo [descripción breve de los servicios]. Nos esforzamos por ofrecer servicios de alta calidad, pero no garantizamos la resolución de todos los problemas.</p>
+                <br>
+                <p><h2>Responsabilidades del Usuario</h2> Proporcionar información precisa y completa al solicitar servicios técnicos.
+                    Colaborar con nuestros técnicos siguiendo las instrucciones proporcionadas.
+                    Respetar las políticas y reglas establecidas por Imperio Digital.</p>
+                <br>
+                <p><h2>Pago y Facturación</h2> Los servicios se facturarán según las tarifas establecidas por Imperio Digital.
+                    El pago se realizará [métodos de pago aceptados] antes o después de la prestación del servicio.</p>
+                <br>
+                <p><h2>Limitación de Responsabilidad</h2> Imperio Digital no será responsable de pérdidas indirectas, daños consecuentes o cualquier otro perjuicio que no sea razonablemente previsible.</p>
+                <br>
+                <p><h2>Privacidad y Seguridad</h2> Recopilamos y procesamos la información de acuerdo con nuestra política de privacidad.
+                    Implementamos medidas de seguridad para proteger la información del usuario, pero no garantizamos la seguridad absoluta.</p>
+                <br>
+                <p><h2>Cambios en los Términos</h2> Nos reservamos el derecho de modificar estos términos de servicio en cualquier momento. Los cambios entrarán en vigencia después de su publicación en nuestro sitio web.
+
+                </p>
+                <br>
+                <p><h2> Cancelación y Reembolsos</h2> [Política de cancelación]
+                    [Política de reembolsos]</p>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función para alternar la visibilidad de las secciones
+        function toggleSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section.style.display === 'none') {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        }
+    </script>
+
+    
+
+    <script src="{%static 'js/scripts.js'%}"></script>
+
+    <script>
+        function mostrarFormulario() {
+            var formularioContainer = document.getElementById('formulario-container');
+            formularioContainer.style.display = 'block';
+        }
+    </script>
+
+    <script src="https://kit.fontawesome.com/c15b744a04.js" crossorigin="anonymous"></script>
+    
+    
+</body>
+
+</html>
